@@ -2,7 +2,7 @@ import {NextResponse} from "next/server";
 import {createClient} from "@supabase/supabase-js";
 
 const PRIMARY_MODEL=process.env.GEMINI_MODEL||"gemini-2.5-flash";
-const FALLBACK_MODELS=["gemini-2.5-flash-lite","gemini-2.0-flash"].filter(m=>m!==PRIMARY_MODEL);
+const FALLBACK_MODELS=["gemini-3.5-flash-lite","gemini-3.7-flash","gemini-3.5-flash"].filter(m=>m!==PRIMARY_MODEL);
 const clean=s=>String(s||"").replace(/[<>]/g,"").trim();
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
