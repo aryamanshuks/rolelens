@@ -13,7 +13,7 @@ async function callGemini(prompt){
   for(let attempt=0;attempt<2;attempt++){
    const gr=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`,{
     method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json",temperature:.25}})
+    body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json",temperature:.25,maxOutputTokens:700}})
    });
    if(gr.ok){
     const gj=await gr.json();
