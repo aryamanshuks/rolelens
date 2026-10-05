@@ -19,7 +19,8 @@ export default function Home(){
    <aside className="card side"><p className="eyebrow">LIVE SIGNAL</p><h2>What roles demand</h2>{stats?.topSkills?.length?<div className="skills">{stats.topSkills.map((s,i)=><div key={s.skill}><span>{i+1}. {s.skill}</span><b>{s.count}</b></div>)}</div>:<p className="muted">Skill demand will appear as analyses are completed.</p>}<div className="count">{stats?.total??0}<span> analyses logged</span></div></aside>
   </section>
   {err&&<div className="error">{err}</div>}
-  {data&&<section className="results"><div className="resultHead"><p className="eyebrow">YOUR ROLELENS</p><h2>Three gaps worth closing first.</h2></div><div className="gapgrid">{data.topGaps.map((g,i)=><article className="gap" key={i}><div className="num">0{i+1}</div><h3>{g.gap}</h3><p>{g.whyItMatters}</p><strong>Evidence to build</strong><p>{g.evidenceToBuild}</p></article>)}</div><div className="plan"><h2>Your 7-day evidence sprint</h2>{data.actionPlan.map((d,i)=><div className="day" key={i}><b>DAY {d.day}</b><span>{d.action}</span></div>)}</div></section>}
+  {data?.refusal&&<section className="results"><div className="card"><p className="eyebrow">ROLELENS SAFETY</p><h2>That request is outside what RoleLens predicts.</h2><p className="sub">{data.message}</p></div></section>}
+  {data&&!data.refusal&&<section className="results"><div className="resultHead"><p className="eyebrow">YOUR ROLELENS</p><h2>Three gaps worth closing first.</h2></div><div className="gapgrid">{data.topGaps.map((g,i)=><article className="gap" key={i}><div className="num">0{i+1}</div><h3>{g.gap}</h3><p>{g.whyItMatters}</p><strong>Evidence to build</strong><p>{g.evidenceToBuild}</p></article>)}</div><div className="plan"><h2>Your 7-day evidence sprint</h2>{data.actionPlan.map((d,i)=><div className="day" key={i}><b>DAY {d.day}</b><span>{d.action}</span></div>)}</div></section>}
   <footer>RoleLens · Built as an evidence-first GenAI prototype</footer>
  </main>
 }
